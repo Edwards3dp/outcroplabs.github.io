@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Outcrop Labs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background: #0a0a0a;
+        }
+
+        nav {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #7c3aed;
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #7c3aed 0%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: #14b8a6;
+        }
+
+        .hero-small {
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 40%, #0f4c5c 100%);
+            color: white;
+            padding: 140px 5% 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-small::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-small h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, #ffffff 0%, #14b8a6 50%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-small p {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #e0e0e0;
+        }
+
+        section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            border: 2px solid #2d2d2d;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7c3aed 0%, #14b8a6 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #7c3aed;
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0b2e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+        }
+
+        .project-content {
+            padding: 2.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(124, 58, 237, 0.2);
+            color: #14b8a6;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .project-card p {
+            color: #b0b0b0;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-specs {
+            border-top: 1px solid #3d3d3d;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.75rem 0;
+            font-size: 0.95rem;
+        }
+
+        .spec-label {
+            color: #808080;
+            font-weight: 600;
+        }
+
+        .spec-value {
+            color: #14b8a6;
+            font-weight: 600;
+        }
+
+        footer {
+            background: #000000;
+            color: #808080;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid #2d2d2d;
+        }
+
+        @media (max-width: 768px) {
+            .hero-small h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cta-note {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .cta-note h3 {
+            color: #14b8a6;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-note p {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #7c3aed 0%, #14b8a6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">OUTCROP LABS</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-small">
+        <h1>Our Work</h1>
+        <p>Featured projects showcasing PCB design, 3D printing, and rapid prototyping solutions</p>
+    </section>
+
+    <section>
+        <div class="projects-grid">
+            <!-- Project 1 - Desktop Weather Station -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/weather-station.jpg'); background-size: cover; background-position: center;">
+                    <div style="background: rgba(0,0,0,0.3); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        ⛅
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">PCB Design</span>
+                        <span class="tag">3D Printing</span>
+                        <span class="tag">CAD Modeling</span>
+                        <span class="tag">Full Build</span>
+                    </div>
+                    <h3>Desktop Weather Station</h3>
+                    <p>Complete start-to-finish build including custom circuit design, PCB layout, CAD-modeled enclosure with heat-set inserts, and hand-soldered assembly. Monitors temperature, humidity, pressure, and displays real-time data.</p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Build Type:</span>
+                            <span class="spec-value">Complete Custom</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Assembly:</span>
+                            <span class="spec-value">Hand Soldered</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Enclosure:</span>
+                            <span class="spec-value">3D Printed + Inserts</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Documentation:</span>
+                            <span class="spec-value">
+                                <a href="#" style="color: #14b8a6; text-decoration: none;">Schematics Available</a>
+                            </span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Video:</span>
+                            <span class="spec-value">
+                                <a href="#" style="color: #7c3aed; text-decoration: none;">Coming Soon on YouTube</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 - Coming Soon -->
+            <div class="project-card">
+                <div class="project-image">🎨</div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Coming Soon</span>
+                    </div>
+                    <h3>Project Coming Soon</h3>
+                    <p>More projects will be showcased here as they are completed. Check back soon for updates on new builds and designs.</p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Status:</span>
+                            <span class="spec-value">In Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 - Coming Soon -->
+            <div class="project-card">
+                <div class="project-image">🤖</div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Coming Soon</span>
+                    </div>
+                    <h3>Project Coming Soon</h3>
+                    <p>More projects will be showcased here as they are completed. Check back soon for updates on new builds and designs.</p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Status:</span>
+                            <span class="spec-value">In Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 - Coming Soon -->
+            <div class="project-card">
+                <div class="project-image">📦</div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Coming Soon</span>
+                    </div>
+                    <h3>Project Coming Soon</h3>
+                    <p>More projects will be showcased here as they are completed. Check back soon for updates on new builds and designs.</p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Status:</span>
+                            <span class="spec-value">In Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 - Coming Soon -->
+            <div class="project-card">
+                <div class="project-image">⚙️</div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Coming Soon</span>
+                    </div>
+                    <h3>Project Coming Soon</h3>
+                    <p>More projects will be showcased here as they are completed. Check back soon for updates on new builds and designs.</p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Status:</span>
+                            <span class="spec-value">In Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 - Coming Soon -->
+            <div class="project-card">
+                <div class="project-image">🔋</div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Coming Soon</span>
+                    </div>
+                    <h3>Project Coming Soon</h3>
+                    <p>More projects will be showcased here as they are completed. Check back soon for updates on new builds and designs.</p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Status:</span>
+                            <span class="spec-value">In Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-note">
+            <h3>Have a Project in Mind?</h3>
+            <p>These are example projects. Let's discuss how we can bring your ideas to life with custom PCB design, 3D printing, and rapid prototyping solutions.</p>
+            <a href="index.html#contact" class="cta-button">Start Your Project</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Outcrop Labs LLC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
