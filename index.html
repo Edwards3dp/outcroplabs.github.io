@@ -45,6 +45,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: -1px;
+            text-decoration: none;
         }
 
         nav ul {
@@ -61,7 +62,7 @@
             font-size: 1.05rem;
         }
 
-        nav a:hover {
+        nav a:hover, nav a.active {
             color: #14b8a6;
         }
 
@@ -207,11 +208,6 @@
             transform: scaleX(1);
         }
 
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
         .service-card h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
@@ -299,23 +295,16 @@
                 font-size: 2.5rem;
             }
         }
-
-        .circuit-pattern {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            opacity: 0.1;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
     <nav>
         <div class="container">
-            <div class="logo">OUTCROP LABS</div>
+            <a href="index.html" class="logo">OUTCROP LABS</a>
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="#credentials">Credentials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -336,32 +325,26 @@
         <p class="section-subtitle">Comprehensive prototyping and design solutions for inventors, startups, and established companies</p>
         <div class="services">
             <div class="service-card">
-                <div class="service-icon">⚡</div>
                 <h3>PCB Design & Assembly</h3>
                 <p>Custom circuit board design from concept to production. Schematic capture, layout optimization, and professional assembly services for your electronic projects.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">🔧</div>
                 <h3>Rapid Prototyping</h3>
                 <p>Fast-turnaround prototyping for proof-of-concept, functional testing, and design iteration. Get from idea to working prototype quickly.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">🎨</div>
                 <h3>3D Modeling & Printing</h3>
                 <p>Professional CAD modeling and additive manufacturing. From concept sketches to production-ready 3D printed parts in various materials.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">💡</div>
                 <h3>3D Printing Consulting</h3>
                 <p>Expert guidance on material selection, design optimization for additive manufacturing, and process selection to achieve your project goals.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">🔬</div>
                 <h3>Electronic Systems Design</h3>
                 <p>Complete electronic system development including embedded controls, automation solutions, and sensor integration.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">📐</div>
                 <h3>Design for Manufacturing</h3>
                 <p>DFM consulting to ensure your designs are optimized for cost-effective production, assembly, and reliability.</p>
             </div>
